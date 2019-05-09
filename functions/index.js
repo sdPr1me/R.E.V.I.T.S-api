@@ -31,10 +31,7 @@ const getDate = () =>{
   return todaysdate;
 }
 
-exports.testpoint = functions.https.onRequest((req,res)=>{
-  let dateToday = getDate();
-  res.send(dateToday);
-})
+
 
 
 
