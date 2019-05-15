@@ -12,10 +12,9 @@
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-	<!-- Bootstrap -->
+	<!-- Bootstrap-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+	
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
@@ -57,8 +56,8 @@
 					<div class="col-md-7 col-md-push-5">
 						<div class="booking-cta">
 							<center>
-							<img src="img/appLogo.png" width="120" height="120">
-							<h1>INDIAN RAILWAYS</h1>
+							<img src="img/appLogo.png" width="120" height="120" style="margin-top: -50px;">
+							<h1 style="color:#fff;">INDIAN RAILWAYS</h1>
 							<p>| Safety | Security | Punctuality |</p>
 							</center>
 						</div>
@@ -70,17 +69,17 @@
 							<form>
 								<div class="form-group">
 									<span class="form-label">Your Source</span>
-									<input class="form-control" type="text" placeholder="From" required>
+									<input class="form-control" id="sourceStn" type="text" placeholder="From" required>
 								</div>
 								<div class="form-group">
 										<span class="form-label">Your Destination</span>
-										<input class="form-control" type="text" placeholder="To" required>
+										<input class="form-control" id="destStn" type="text" placeholder="To" required>
 									</div>
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
 											<span class="form-label">Date of Journey</span>
-											<input class="form-control" type="date" required>
+											<input class="form-control" id="doj" type="date" required>
 										</div>
 									</div>
 								</div>
@@ -88,26 +87,25 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<span class="form-label">Preferred Class</span>
-											<select class="form-control">
-												<option>All Classes</option>
-												<option>Anubhuti Classes (EA)</option>
-												<option>AC First Class (1A)</option>
-												<option>Exec. Chair Car (EC)</option>
-												<option>AC 2 Tier (2A)</option>
-												<option>AC 3 Tier (3A)</option>
-												<option>AC 3 Economoy (3E)</option>
-												<option>AC Chair Car (CC)</option>
-												<option>Sleeper (SL)</option>
-												<option>Second Sitting (2S)</option>
+											<select class="form-control" id="class">
+												<option value="All">All Classes</option>
+												<option value="EA">Anubhuti Classes (EA)</option>
+												<option value="1A">AC First Class (1A)</option>
+												<option value="EC">Exec. Chair Car (EC)</option>
+												<option value="2A">AC 2 Tier (2A)</option>
+												<option value="3A">AC 3 Tier (3A)</option>
+												<option value="3E">AC 3 Economoy (3E)</option>
+												<option value="CC">AC Chair Car (CC)</option>
+												<option value="SL">Sleeper (SL)</option>
+												<option value="2S">Second Sitting (2S)</option>
 											</select>
-											<span class="select-arrow"></span>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label style="font-weight: 600;color: #2E3192;"><input type="checkbox" value="">Flexible with date</label>
+											<label style="font-weight: 600;color: #2E3192;"><input type="checkbox" value="date-flexible">Flexible with date</label>
 										</div>
 									</div>
 								</div>
@@ -124,7 +122,7 @@
 											</div>
 								</div>
 								<div class="form-btn">
-									<button class="submit-btn btn-block">Find Trains</button>
+									<button class="submit-btn btn-block" id='findBtn'>Find Trains</button>
 								</div>
 							</form>
 						</div>
@@ -133,6 +131,38 @@
 			</div>
 		</div>
 	</div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+	<div class="container" id="trains-list">
+		<h1>Found Trains</h1>
+			<div class="row trains">
+				<div class="col-md-5">
+					<h3><img src="img/train.png"> Jana Shatabdi Express (12073)</h3>
+					<h5>Howrah <span class="glyphicon glyphicon-arrow-right"></span> Bhubaneshwar</h5>
+				</div>
+				<div class="col-md-3"></div>
+				<div class="col-md-2"><select class="form-control"><option>AC Chair Car (CC)</option><option>Second Seating (2S)</option></select></div>
+				<div class="col-md-2"><button class="submit-btn btn-block">Check Seats</button></div>
+			</div>
+		</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="scripts/main.js"></script>
+		<script>
+			var dtToday = new Date();
+			var month = dtToday.getMonth() + 1;
+			var day = dtToday.getDate();
+			var year = dtToday.getFullYear();
+			if(month < 10)
+				month = '0' + month.toString();
+			if(day < 10)
+				day = '0' + day.toString();
+			
+			var maxDate = year + '-' + month + '-' + day;
+			$('#doj').attr('min', maxDate);
+		</script>
+
+</body>
 
 </html>

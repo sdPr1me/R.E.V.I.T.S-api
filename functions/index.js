@@ -77,11 +77,15 @@ exports.getAllTrains = functions.https.onRequest((req,res)=>{
           trainsToday.push(data);
         }
       });
+      res.set('Access-Control-Allow-Origin', "*");
+      res.set('Access-Control-Allow-Methods', 'GET, POST');
       res.send(trainsToday);
       return;
     })
     .catch((error)=>{
       console.log(error);
+      res.set('Access-Control-Allow-Origin', "*");
+      res.set('Access-Control-Allow-Methods', 'GET, POST');
       res.status(500).send(error);
     });
 });
@@ -154,11 +158,15 @@ exports.getTrainsToday = functions.https.onRequest((req,res)=>{
     return Promise.all(promises);
   })
   .then((createresponse)=>{
+    res.set('Access-Control-Allow-Origin', "*");
+    res.set('Access-Control-Allow-Methods', 'GET, POST');
     res.send(trainsToday);
     return;
   })
   .catch((error)=>{
     console.log(error);
+    res.set('Access-Control-Allow-Origin', "*");
+    res.set('Access-Control-Allow-Methods', 'GET, POST');
     res.status(500).send(error);
   });
 });
