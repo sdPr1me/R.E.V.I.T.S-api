@@ -20,7 +20,7 @@ $(document).ready(()=>{
                     $('#trains-list').append(`<h3 style="color: white;padding:10px 10px; background-color:#B33A3A;box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);border-radius:5px;">No Trains Found...Please try different search parameters...</h3>`);
                 }
                 else{
-                    $('#trains-list').append(generateTrainList(foundTrains));
+                    $('#trains-list').append(generateTrainList(foundTrains,doj));
                 }
             })
             .catch((e)=>{
@@ -35,7 +35,7 @@ $(document).ready(()=>{
 
 
 
-let generateTrainList = (foundTrains)=>{
+let generateTrainList = (foundTrains,doj)=>{
     let coaches = {
         chairCar : "AC Chair Car (CC)",
         secondSitting : "Second Sitting (2S)",
@@ -56,9 +56,17 @@ let generateTrainList = (foundTrains)=>{
                                 <h5>${train.source} <span class="glyphicon glyphicon-arrow-right"></span> ${train.destination}</h5>
                             </div>
                             <div class="col-md-2"></div>
+                            <form action="/seats.html" method="GET">
                             <div class="col-md-3">
+                                <input type="hidden" name="trainName" value="${train.trainName}">
+                                <input type="hidden" name="trainNo" value="${train.trainNo}">
+                                <input type="hidden" name="source" value="${train.source}">
+                                <input type="hidden" name="destination" value="${train.destination}">
+                                <input type="hidden" name="arrival" value="${train.arrival}">
+                                <input type="hidden" name="departure" value="${train.departure}">
+                                <input type="hidden" name="doj" value="${doj}">
                                 <span class="form-label">Preferred Class *</span>
-                                <select class="form-control" required>
+                                <select class="form-control" name="class" required>
                                     <option value="">Select Class</option>`;
                                 for(let i= 0 ; i < train.coachTypes.length ; i++){
                                     htmlData += `<option value="${train.coachTypes[i]}">${coaches[train.coachTypes[i]]}</option>`;
@@ -66,7 +74,10 @@ let generateTrainList = (foundTrains)=>{
 
                             htmlData +=`</select>
                             </div>
-                            <div class="col-md-2"><button class="submit-btn btn-block" style="margin:20px 0px;">Check Seats</button></div>
+                            <div class="col-md-2">
+                                <input type="submit" value="Check Seats" class="submit-btn btn-block" style="margin:20px 0px;">
+                            </div>
+                            </form>
                         </div>` ;
     }
     return htmlData;
