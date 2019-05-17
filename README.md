@@ -10,4 +10,4 @@ Modelled on the Indian Railway Reservation System, it aims at providing all the 
 This under-development project will feature both an website and a cross-platform app.
 
 ## Website
-Check out the modelled website here at [R.E.V.I.T.S - website](https://ticketchecker-d4f79.firebaseapp.com/)
+Check out the under-development website here at [R.E.V.I.T.S - website](https://ticketchecker-d4f79.firebaseapp.com/)
