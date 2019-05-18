@@ -17,7 +17,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-8" style="border-right: 2px solid black;background-color: rgba(46, 49, 146,0.4);">
+			<div class="col-md-8" style="border-right: 2px solid black;background-color: #fff;">
 				<center>
 					<div id="layout">
 					</div>
@@ -33,7 +33,31 @@
 	<script type="text/javascript" src="scripts/putSeats.js"></script>
 	<script type="text/javascript">
 		$(document).ready(()=>{
-			putSeats2AC();
+			let parsedUrl = new URL(window.location.href);
+			let trainName = parsedUrl.searchParams.get("trainName");
+			let trainNo = parsedUrl.searchParams.get("trainNo");
+			let source = parsedUrl.searchParams.get("source");
+			let destination = parsedUrl.searchParams.get("destination");
+			let arrival = parsedUrl.searchParams.get("arrival");
+			let departure = parsedUrl.searchParams.get("departure");
+			let doj = parsedUrl.searchParams.get("doj");
+			let journeyClass = parsedUrl.searchParams.get("class");
+			if(trainName === "Jan Shatabdi Express" || trainName === "Shatabdi Express" ){
+				if(journeyClass === "secondSitting"){
+					journeyClass = "secondSittingJanShatabdi" ;
+					createLayout(journeyClass);
+				}
+				else if(journeyClass === "chairCar"){
+					journeyClass = "chairCarShatabdi";
+					createLayout(journeyClass);
+				}
+				else{
+					createLayout(journeyClass);
+				}
+			}
+			else{
+				createLayout(journeyClass);
+			}
 		});
 	</script>
 	

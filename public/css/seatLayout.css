@@ -1,6 +1,5 @@
 #layout{
     height:auto;
-    width:50%;
     border: 2px solid rgb(46, 45, 45);
     border-radius: 5px;
     padding: 10px 10px;
@@ -31,6 +30,7 @@
 .row1{
     height: 50%;
     margin-top: 15px;
+    width: auto;
 }
 .row2{
     height: 50%;
